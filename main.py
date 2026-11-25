@@ -12,6 +12,11 @@ LINE = "3am. I kept your leftovers safe for 11 days and all I get is you staring
 
 
 def main() -> int:
+    # Self-check the competition gate before writing: the entry must be
+    # one line of 1-140 UTF-8 characters, not only whitespace.
+    if not 1 <= len(LINE) <= 140 or not LINE.strip():
+        print("entry line violates the 1-140 character gate", file=sys.stderr)
+        return 1
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
